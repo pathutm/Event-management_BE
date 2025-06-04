@@ -1,143 +1,126 @@
+# Event Management Platform – Backend
+
+This is the backend service for the **Event Management Platform**, built with **Node.js**, **Express.js**, and **MongoDB**, following a **clean MVC architecture** for better separation of concerns. The backend is designed to handle user authentication, event creation, Gemini-based AI description generation, and image handling via base64 directly into the database.
+
+## Technologies Used
+
+| Category         | Stack/Library       |
+|------------------|---------------------|
+| Runtime          | Node.js             |
+| Server Framework | Express.js          |
+| Database         | MongoDB + Mongoose  |
+| Auth             | JWT (jsonwebtoken)  |
+| AI Integration   | Google Gemini API   |
+| Environment Vars | dotenv              |
+| CORS             | cors                |
+| Error Handling   | Custom Middlewares  |
+
+
+---
+
+## Folder Architecture
+
+```bash
+.
+├── config/
+│   └── db.js                 # MongoDB connection setup
+├── controllers/
+│   ├── authController.js     # Login/Register handlers
+│   └── eventController.js    # Event creation logic
+├── middlewares/
+│   ├── authMiddleware.js     # Protect routes using JWT
+│   └── errorHandler.js       # Global error catcher
+├── models/
+│   ├── user.js               # Mongoose schema for User
+│   └── event.js              # Mongoose schema for Event
+├── routes/
+│   ├── authRoutes.js         # Auth endpoints
+│   └── eventRoutes.js        # Event-related endpoints
+├── services/
+│   └── geminiService.js      # Handles interaction with Gemini API
+├── .env                      # Store all secrets and keys
+├── server.js                 # Entry point for backend server
+├── package.json
+├── README.md
+
+```
+
+## .env
+
 PORT=5000
+
 MONGODB_URI=mongodb://localhost:27017/hackathon
+
 JWT_SECRET=Pathu@123
 
-# Hackathon Event Management Platform – Backend
+## Key Features
 
-This is the backend service for the Hackathon Event Management Platform. It provides RESTful APIs to manage users, events, authentication, and admin functionalities.
+- Clean and modular **MVC architecture**
+- JWT-based authentication with secure protected routes
+- Route separation for `auth` and `event` modules
+- **Google Gemini API integrated** for AI-powered event description
+- Image upload via base64 and stored directly in MongoDB
+- Proper error handling with centralized middleware
+- Easy to extend for new features or services
+- Ready for scale: **can be upgraded to microservices also**
 
-## Tech Stack
+## Setup Instructions
 
-- Node.js
-- Express.js
-- MongoDB (with Mongoose)
-- JWT (for Authentication)
-- CORS, Helmet, Morgan (Security & Logging)
-- dotenv (Environment Variables)
+```bash
+# 1. Clone the repo
+git clone https://github.com/username/your-backend-repo.git
 
-## Folder Structure
+# 2. Navigate into the project
+cd backend-repo
 
-be/
-├── config/ # Database connection setup
-├── controllers/ # Route handler logic
-├── middlewares/ # Auth and error handling
-├── models/ # Mongoose schemas (User, Event)
-├── routes/ # API route definitions
-├── utils/ # Helper functions
-├── index.js # Entry point
-├── .env # Environment variables
-├── .gitignore
-└── package.json
-
-give the proper readme file using this content
-Hackathon Event Management Platform – Backend
-Node.js
-Express.js
-MongoDB
-
-This is the backend service for the Hackathon Event Management Platform. It provides RESTful APIs to manage users, events, authentication, and admin functionalities.
-
-Features
-User authentication (JWT)
-
-CRUD operations for hackathon events
-
-Admin dashboard functionalities
-
-Secure API endpoints
-
-Request logging
-
-CORS protection
-
-Tech Stack
-Runtime: Node.js
-
-Framework: Express.js
-
-Database: MongoDB (with Mongoose ODM)
-
-Authentication: JWT (JSON Web Tokens)
-
-Security: Helmet, CORS
-
-Logging: Morgan
-
-Environment Management: dotenv
-
-Environment Variables
-The following environment variables need to be set in your .env file:
-
-env
-PORT=5000
-MONGODB_URI=mongodb://localhost:27017/hackathon
-JWT_SECRET=your_strong_jwt_secret_here
-Installation
-Clone the repository:
-
-bash
-git clone https://github.com/yourusername/....
-cd hackathon-platform/be
-Install dependencies:
-
-bash
+# 3. Install dependencies
 npm install
-Set up environment variables:
 
-bash
-cp .env.example .env
-# Edit .env file with your configuration
-Start the development server:
+# 4. Create a `.env` file with the following:
+PORT=5000
+MONGO_URI=mongodb_uri_here #localhost or we can use cluster for testing
+JWT_SECRET=jwt_secret
+GEMINI_API_KEY=gemini_api_key #use in Frontend else we can use here
 
-bash
+# 5. Run the server
 npm start
-or for development with nodemon:
 
-bash
-npm run dev
-Folder Structure
-be/
-├── config/          # Database connection and configuration
-├── controllers/     # Route handlers and business logic
-├── middlewares/     # Authentication and error handling middleware
-├── models/          # Mongoose schemas and models (User, Event)
-├── routes/          # API route definitions
-├── utils/           # Helper functions and utilities
-├── index.js         # Application entry point
-├── .env             # Environment variables
-├── .gitignore
-└── package.json
+```
 
+## REST API Overview
+➤ Auth Routes
+```POST /api/auth/register``` – Register user
 
-Sample Endpoints
-POST /api/auth/register - User registration
+```POST /api/auth/login``` – Login and receive JWT token
 
-POST /api/auth/login - User login
+➤ Event Routes
+```POST /api/events/create``` – Create event with image + Gemini description
 
-GET /api/events - Get all events
+Requires valid JWT token in``` Authorization``` header as: ```Bearer <token>```
 
-POST /api/events - Create new event (admin only)
+## Status
+MongoDB integration tested
 
-PUT /api/events/:id - Update event (admin only)
+Event + User schema live
 
-Development
-To run in development mode with automatic restart:
+JWT secure routes working
 
-bash
-npm run dev
-To run tests:
+Gemini API tested with fallback
 
-bash
-npm test
-Deployment
-For production deployment:
+Scalable code structure
 
-Set NODE_ENV=production in your .env file
+Ready for hackathons, demos, or feature extension
+
+ ## Done by
+
+ Pathu T
+ 
+ Intern
+ 
+ SNS InnovationHub
+
+Thank you, Your feedback is greatly appreciated!
 
 
-bash
-pm2 start index.js --name "hackathon-backend"
-Contributing
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
-License
+
