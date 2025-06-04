@@ -76,7 +76,7 @@ Installation
 Clone the repository:
 
 bash
-git clone https://github.com/yourusername/hackathon-platform.git
+git clone https://github.com/yourusername/....
 cd hackathon-platform/be
 Install dependencies:
 
@@ -107,8 +107,7 @@ be/
 ├── .env             # Environment variables
 ├── .gitignore
 └── package.json
-API Documentation
-The API documentation is available at /api-docs when the server is running (requires Swagger setup).
+
 
 Sample Endpoints
 POST /api/auth/register - User registration
