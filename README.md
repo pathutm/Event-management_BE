@@ -49,7 +49,7 @@ This is the backend service for the **Event Management Platform**, built with **
 
 PORT=5000
 
-MONGODB_URI=mongodb://localhost:27017/hackathon
+MONGODB_URI=mongodb://localhost:27017/test-sample
 
 JWT_SECRET=Pathu@123
 
